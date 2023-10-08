@@ -12,10 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('people', function (Blueprint $table) {
-            $table->id();
-            $table->enum('role', GenderEnum::values());
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->enum('gender', GenderEnum::values())->default(GenderEnum::NOT_DEFINED->value);
         });
     }
 
@@ -24,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('people');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('gender');
+        });
     }
 };
