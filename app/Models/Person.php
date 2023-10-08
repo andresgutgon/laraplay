@@ -11,6 +11,7 @@ class Person extends Model
 
     protected $fillable = ['gender'];
 
+    // Enum can be used in validations. Check "Enum rule validation"
     protected $cast = [
         'gender' => GenderEnum::class,
     ];
