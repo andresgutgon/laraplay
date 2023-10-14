@@ -13,8 +13,17 @@ class Organization extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'location_id',
     ];
+
+    /**
+     * @return array<string, array<string, string>>
+     */
+    public function sluggable(): array
+    {
+        return ['slug' => ['source' => 'name']];
+    }
 
     public function location(): BelongsTo
     {
@@ -24,13 +33,5 @@ class Organization extends Model
     public function members(): HasMany
     {
         return $this->hasMany(OrganizationMember::class);
-    }
-
-    /**
-     * @return array<string, array<string, string>>
-     */
-    public function sluggable(): array
-    {
-        return ['slug' => ['source' => 'name']];
     }
 }
