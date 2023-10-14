@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Enums\ExperienceStatusEnum;
 use App\Models\Country;
-use App\Models\Experience;
+use App\Models\Experiences\DatingExperience;
 use App\Models\Location;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
@@ -23,7 +23,7 @@ class ExperienceSeeder extends Seeder
                 'city' => 'Barcelona',
                 'country_id' => $spain->id]
             );
-            $experience = Experience::create([
+            $experience = DatingExperience::create([
                 'organization_id' => $organization->id,
                 'title' => 'Caminata por el Parque Natural del Montseny',
                 'status' => ExperienceStatusEnum::ACTIVE->value,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\ExperienceStatusEnum;
+use App\Enums\ExperienceTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +25,9 @@ return new class extends Migration
             $table->time('time', 0);
             $table->integer('price_in_cents');
             $table->integer('participants_limit');
+            $table
+                ->enum('experience_type', ExperienceTypeEnum::values())
+                ->default(ExperienceTypeEnum::BASIC->value);
 
             // Dating
             $table->integer('age_range_start')->default(18);
