@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\OrganizationRoleEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,26 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('organization_members', function (Blueprint $table) {
+        Schema::create('custodians', function (Blueprint $table) {
             $table->id();
 
-            $table
-                ->enum('role', OrganizationRoleEnum::values())
-                ->default(OrganizationRoleEnum::MEMBER->value);
-
             // Relations
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('member_id');
             $table
-                ->foreign('user_id')
+                ->foreign('member_id')
                 ->references('id')
-                ->on('users')
+                ->on('organization_members')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('organization_id');
+            $table->unsignedBigInteger('experience_id');
             $table
-                ->foreign('organization_id')
+                ->foreign('experience_id')
                 ->references('id')
-                ->on('organizations')
+                ->on('experiences')
                 ->onDelete('cascade');
 
             $table->timestamps();
@@ -43,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('organization_members');
+        Schema::dropIfExists('custodians');
     }
 };

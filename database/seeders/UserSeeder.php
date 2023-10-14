@@ -26,6 +26,20 @@ class UserSeeder extends Seeder
                 'gender' => GenderEnum::FEMALE->value,
                 'password' => 'papapa44',
             ]);
+            User::create([
+                'email' => 'elchez@gmail.com',
+                'name' => 'Elena',
+                'last_name' => 'Sánchez',
+                'gender' => GenderEnum::FEMALE->value,
+                'password' => 'papapa44',
+            ]);
+            User::create([
+                'email' => 'hector@hotmail.com',
+                'name' => 'Hector',
+                'last_name' => 'Vazquez',
+                'gender' => GenderEnum::MALE->value,
+                'password' => 'papapa44',
+            ]);
         });
     }
 }

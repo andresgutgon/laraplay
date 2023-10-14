@@ -47,6 +47,13 @@ return new class extends Migration
                 ->references('id')
                 ->on('locations');
 
+            $table->unsignedBigInteger('trail_id')->nullable();
+            $table
+                ->foreign('trail_id')
+                ->references('id')
+                ->on('locations')
+                ->onDelete('set null');
+
             $table->timestamps();
         });
     }

@@ -4,35 +4,28 @@ namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Organization extends Model
+class Trail extends Model
 {
     use Sluggable;
 
-    protected $fillable = [
-        'name',
-        'slug',
-        'location_id',
-    ];
+    protected $fillable = ['organization_id', 'experience_id', 'title', 'slug'];
 
     /**
+     * @todo make this slug scoped by organization->name too
+     *
      * @return array<string, array<string, string>>
      */
     public function sluggable(): array
     {
-        return ['slug' => ['source' => 'name']];
+        return ['slug' => ['source' => 'title']];
     }
 
-    public function location(): BelongsTo
+    public function organization(): HasOne
     {
-        return $this->belongsTo(Location::class);
-    }
-
-    public function members(): HasMany
-    {
-        return $this->hasMany(OrganizationMember::class);
+        return $this->hasOne(Organization::class);
     }
 
     public function experiences(): HasMany

@@ -7,6 +7,7 @@ use App\Models\Experiences\BasicExperience;
 use App\Models\Experiences\DatingExperience;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Parental\HasChildren;
 
@@ -47,6 +48,21 @@ class Experience extends Model
     public function organization(): HasOne
     {
         return $this->hasOne(Organization::class);
+    }
+
+    public function custodians(): HasMany
+    {
+        return $this->hasMany(Custodian::class);
+    }
+
+    public function participants(): HasMany
+    {
+        return $this->hasMany(Participant::class);
+    }
+
+    public function trail(): HasOne
+    {
+        return $this->hasOne(Trail::class);
     }
 
     public function meeting_point(): HasOne
