@@ -31,10 +31,17 @@ return new class extends Migration
 
             // References
             $table->unsignedBigInteger('organization_id');
-            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table
+                ->foreign('organization_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('location_id');
-            $table->foreign('location_id')->references('id')->on('locations');
+            $table
+                ->foreign('location_id')
+                ->references('id')
+                ->on('locations');
 
             $table->timestamps();
         });

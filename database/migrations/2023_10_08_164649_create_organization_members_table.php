@@ -18,10 +18,16 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('organization_id');
-            $table->foreign('organization_id')->references('id')->on('organizations');
             $table
                 ->enum('role', OrganizationRoleEnum::values())
                 ->default(OrganizationRoleEnum::MEMBER->value);
+
+            // Relations
+            $table
+                ->foreign('organization_id')
+                ->references('id')
+                ->on('organizations')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });
