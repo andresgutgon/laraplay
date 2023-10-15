@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use App\Enums\ExperienceStatusEnum;
+use App\Enums\GenderGroupBundleEnum;
 use App\Models\Country;
 use App\Models\Custodian;
-use App\Models\Experiences\DatingExperience;
+use App\Models\Experience;
 use App\Models\Location;
 use App\Models\Organization;
 use App\Models\OrganizationMember;
@@ -29,7 +30,7 @@ class ExperienceSeeder extends Seeder
                 'country_id' => $spain->id]
             );
             $trail = Trail::where('slug', 'ruta-colserolla-en-bicicleta')->first();
-            $experience = DatingExperience::create([
+            $experience = Experience::create([
                 'organization_id' => $organization->id,
                 'trail_id' => $trail->id,
                 'title' => 'Caminata por el Parque Natural del Montseny',
@@ -43,6 +44,7 @@ class ExperienceSeeder extends Seeder
                 'age_range_start' => 35,
                 'age_range_end' => 45,
             ]);
+            $experience->createGroupsFor(GenderGroupBundleEnum::HETERO);
 
             // Custodian
             $maria = OrganizationMember::whereHas('user', function ($query) {
