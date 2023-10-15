@@ -1,24 +1,38 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
 
-use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state, rules};
+use function Laravel\Folio\middleware;
+use function Laravel\Folio\name;
+use function Livewire\Volt\rules;
+use function Livewire\Volt\state;
 
 middleware(['guest']);
-state(['name' => '', 'email' => '', 'password' => '', 'passwordConfirmation' => '']);
-rules(['name' => 'required', 'email' => 'required|email|unique:users', 'password' => 'required|min:8|same:passwordConfirmation']);
+state([
+    'name' => '',
+    'last_name' => '',
+    'email' => '',
+    'password' => '',
+    'passwordConfirmation' => '',
+]);
+rules([
+    'name' => 'required',
+    'last_name' => 'required',
+    'email' => 'required|email|unique:users',
+    'password' => 'required|min:8|same:passwordConfirmation',
+]);
 name('register');
 
-$register = function(){
+$register = function () {
     $this->validate();
 
     $user = User::create([
         'email' => $this->email,
         'name' => $this->name,
+        'last_name' => $this->last_name,
         'password' => Hash::make($this->password),
     ]);
 
@@ -51,6 +65,7 @@ $register = function(){
                 @volt('auth.register')
                     <form wire:submit="register" class="space-y-6">
                         <x-ui.input label="Name" type="name" id="name" name="name" wire:model="name" />
+                        <x-ui.input label="Last name" type="name" id="last_name" name="last_name" wire:model="last_name" />
                         <x-ui.input label="Email address" type="email" id="email" name="email" wire:model="email" />
                         <x-ui.input label="Password" type="password" id="password" name="password" wire:model="password" />
                         <x-ui.input label="Confirm Password" type="password" id="password_confirmation" name="password_confirmation" wire:model="passwordConfirmation" />
@@ -59,7 +74,7 @@ $register = function(){
                 @endvolt
             </div>
         </div>
-        
+
     </div>
 
 </x-layouts.main>
