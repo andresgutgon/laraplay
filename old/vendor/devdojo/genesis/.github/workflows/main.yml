@@ -1,0 +1,68 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+ 
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv
+          coverage: none
+
+      - name: Setup Laravel
+        run: |
+          composer create-project laravel/laravel:10 ../app --prefer-dist
+
+      - name: Change stability to dev
+        run: |
+          cd ../app
+          sed -i 's/"minimum-stability": "stable"/"minimum-stability": "dev"/' composer.json
+
+      - name: Install Genesis
+        run: |
+          cd ../app
+          composer require devdojo/genesis dev-main
+          php artisan ui genesis
+
+      - name: Install Pest
+        run: |
+          cd ../app
+          composer config --no-interaction allow-plugins.pestphp/pest-plugin true
+          composer require pestphp/pest --with-all-dependencies
+
+      - name: Install NPM dependencies
+        run: |
+          cd ../app
+          npm i
+
+      - name: Compile assets
+        run: |
+          cd ../app
+          npm run build
+
+      - name: List Vendor Bin
+        run: |
+          cd ../app/vendor/pestphp/pest
+          ls -la
+
+      - name: PWD
+        run: pwd
+
+      - name: Execute tests
+        run: |
+          cd ../app
+          ./vendor/bin/pest
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
