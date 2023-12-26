@@ -14,8 +14,6 @@ class Trail extends Model
     protected $fillable = ['organization_id', 'experience_id', 'title', 'slug'];
 
     /**
-     * @todo make this slug scoped by organization->name too
-     *
      * @return array<string, array<string, string>>
      */
     public function sluggable(): array
