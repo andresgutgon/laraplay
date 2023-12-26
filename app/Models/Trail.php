@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Trail extends Model
-{
+class Trail extends Model {
     use Sluggable;
 
     protected $fillable = ['organization_id', 'experience_id', 'title', 'slug'];
@@ -16,18 +15,15 @@ class Trail extends Model
     /**
      * @return array<string, array<string, string>>
      */
-    public function sluggable(): array
-    {
+    public function sluggable(): array {
         return ['slug' => ['source' => 'title']];
     }
 
-    public function organization(): HasOne
-    {
+    public function organization(): HasOne {
         return $this->hasOne(Organization::class);
     }
 
-    public function experiences(): HasMany
-    {
+    public function experiences(): HasMany {
         return $this->hasMany(Experience::class);
     }
 }

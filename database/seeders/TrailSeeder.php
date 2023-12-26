@@ -7,10 +7,8 @@ use App\Models\Trail;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TrailSeeder extends Seeder
-{
-    public function run(): void
-    {
+class TrailSeeder extends Seeder {
+    public function run(): void {
         //
         DB::transaction(function () {
             $organization = Organization::where('slug', 'paco-s-organization')->first();

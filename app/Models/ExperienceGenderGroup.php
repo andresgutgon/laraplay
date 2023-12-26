@@ -7,15 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\DB;
 
-class ExperienceGenderGroup extends Model
-{
+class ExperienceGenderGroup extends Model {
     protected $fillable = ['gender', 'percentage', 'discount_in_cents', 'experience_id'];
 
     /*
      * @return ExperienceGenderGroup[]
      */
-    public static function createLesbianGroup(Experience $experience): array
-    {
+    public static function createLesbianGroup(Experience $experience): array {
         return [
             static::create([
                 'gender' => GenderEnum::FEMALE->value,
@@ -28,8 +26,7 @@ class ExperienceGenderGroup extends Model
     /*
      * @return ExperienceGenderGroup[]
      */
-    public static function createGayGroup(Experience $experience): array
-    {
+    public static function createGayGroup(Experience $experience): array {
         return [
             static::create([
                 'gender' => GenderEnum::MALE->value,
@@ -42,8 +39,7 @@ class ExperienceGenderGroup extends Model
     /*
      * @return ExperienceGenderGroup[]
      */
-    public static function createHeteroGroup(Experience $experience): array
-    {
+    public static function createHeteroGroup(Experience $experience): array {
         $groups = [];
         DB::transaction(function () use ($experience, &$groups) {
             $groups[] = static::create([
@@ -64,13 +60,11 @@ class ExperienceGenderGroup extends Model
     /*
      * @return ExperienceGenderGroup[]
      */
-    public static function createCustomGroup(Experience $experience): array
-    {
+    public static function createCustomGroup(Experience $experience): array {
         return static::createHeteroGroup($experience);
     }
 
-    public function experience(): BelongsTo
-    {
+    public function experience(): BelongsTo {
         return $this->belongsTo(Experience::class);
     }
 }

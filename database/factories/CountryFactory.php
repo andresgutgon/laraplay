@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Country>
  */
-class CountryFactory extends Factory
-{
+class CountryFactory extends Factory {
     /**
      * The name of the factory's corresponding model.
      *
@@ -22,8 +21,7 @@ class CountryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         return [
             'name' => 'Spain',
             'emoji' => '🇪🇸',

@@ -16,10 +16,8 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ExperienceSeeder extends Seeder
-{
-    public function run(): void
-    {
+class ExperienceSeeder extends Seeder {
+    public function run(): void {
         DB::transaction(function () {
             $organization = Organization::where('slug', 'paco-s-organization')->first();
             $spain = Country::where('code', 'ES')->first();

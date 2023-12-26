@@ -11,8 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Parental\HasChildren;
 
-class Experience extends Model
-{
+class Experience extends Model {
     use HasChildren;
     use HasFactory;
     use Sluggable;
@@ -30,8 +29,7 @@ class Experience extends Model
     /*
      * @return ExperienceGenderGroup[]
      */
-    public function createGroupsFor(GenderGroupBundleEnum $bundle): array
-    {
+    public function createGroupsFor(GenderGroupBundleEnum $bundle): array {
         throw_if(
             ! $this->genderGroups()->get()->isEmpty(),
             new ExistingGenderGroupException('Gender groups already created', $this->id)
@@ -54,38 +52,31 @@ class Experience extends Model
     /**
      * @return array<string, array<string, string>>
      */
-    public function sluggable(): array
-    {
+    public function sluggable(): array {
         return ['slug' => ['source' => 'title']];
     }
 
-    public function organization(): HasOne
-    {
+    public function organization(): HasOne {
         return $this->hasOne(Organization::class);
     }
 
-    public function custodians(): HasMany
-    {
+    public function custodians(): HasMany {
         return $this->hasMany(Custodian::class);
     }
 
-    public function participants(): HasMany
-    {
+    public function participants(): HasMany {
         return $this->hasMany(Participant::class);
     }
 
-    public function trail(): HasOne
-    {
+    public function trail(): HasOne {
         return $this->hasOne(Trail::class);
     }
 
-    public function meeting_point(): HasOne
-    {
+    public function meeting_point(): HasOne {
         return $this->hasOne(Location::class);
     }
 
-    public function genderGroups(): HasMany
-    {
+    public function genderGroups(): HasMany {
         return $this->hasMany(ExperienceGenderGroup::class);
     }
 }

@@ -11,10 +11,8 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class OrganizationSeeder extends Seeder
-{
-    public function run(): void
-    {
+class OrganizationSeeder extends Seeder {
+    public function run(): void {
         DB::transaction(function () {
             $spain = Country::where('code', 'ES')->first();
             $location = Location::create(['city' => 'Barcelona', 'country_id' => $spain->id]);

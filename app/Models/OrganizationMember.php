@@ -6,8 +6,7 @@ use App\Enums\OrganizationRoleEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class OrganizationMember extends Model
-{
+class OrganizationMember extends Model {
     protected $fillable = [
         'name',
         'user_id',
@@ -18,13 +17,11 @@ class OrganizationMember extends Model
         'role' => OrganizationRoleEnum::class,
     ];
 
-    public function user(): BelongsTo
-    {
+    public function user(): BelongsTo {
         return $this->belongsTo(User::class);
     }
 
-    public function organization(): BelongsTo
-    {
+    public function organization(): BelongsTo {
         return $this->belongsTo(Organization::class);
     }
 }

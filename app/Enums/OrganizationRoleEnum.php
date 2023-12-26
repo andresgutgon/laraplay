@@ -4,8 +4,7 @@ namespace App\Enums;
 
 use App\Traits\EnumHelper;
 
-enum OrganizationRoleEnum: string
-{
+enum OrganizationRoleEnum: string {
     use EnumHelper;
 
     case OWNER = 'owner';

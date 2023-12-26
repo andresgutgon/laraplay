@@ -4,8 +4,7 @@ namespace App\Enums;
 
 use App\Traits\EnumHelper;
 
-enum GenderGroupBundleEnum: string
-{
+enum GenderGroupBundleEnum: string {
     use EnumHelper;
 
     case LESBIAN = 'lesbian';

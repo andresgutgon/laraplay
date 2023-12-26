@@ -4,8 +4,7 @@ namespace App\Enums;
 
 use App\Traits\EnumHelper;
 
-enum GenderEnum: string
-{
+enum GenderEnum: string {
     use EnumHelper;
 
     case MALE = 'male';
