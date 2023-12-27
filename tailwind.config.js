@@ -1,21 +1,28 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
+const defaultTheme = require("tailwindcss/defaultTheme.js");
+const forms = require("@tailwindcss/forms");
+
+// FIXME: Use ES6 module syntax when supported by Blash (PHP Storybook)
+// https://github.com/area17/blast/issues/98
 
 /** @type {import('tailwindcss').Config} */
-export default {
-    content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-    ],
+module.exports = {
+  content: [
+    "./resources/views/**/*.blade.php",
+  ],
 
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Inter", ...defaultTheme.fontFamily.sans],
+      },
+      fontSize: {
+        h2: '26px',
+      },
+      lineHeight: {
+        h1: '48px',
+      },
     },
+  },
 
-    plugins: [forms],
+  plugins: [forms],
 };
