@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+// Avoid FOUC
+// https://alpinejs.dev/directives/cloak
+[x-cloak] { display: none !important; }

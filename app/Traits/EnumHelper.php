@@ -12,9 +12,11 @@ trait EnumHelper {
      * @return InteractWithEnum|null
      */
     public static function find(mixed $needle): ?self {
+
         if (in_array($needle, self::names())) {
             return constant("self::$needle");
         }
+
         if (in_array($needle, self::values())) {
             return self::tryFrom($needle);
         }
