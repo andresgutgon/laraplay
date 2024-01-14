@@ -1,7 +1,7 @@
 {
     "name": "andresgutgon/laraplay",
     "type": "project",
-    "description": "Learn Larabel by building a something",
+    "description": "Learn Laravel by building something and playing with things.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

@@ -7,11 +7,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
     @include('layouts.includes.font')
-
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('layouts.includes.assets')
   </head>
 
   <body class="font-sans antialiased h-full">
