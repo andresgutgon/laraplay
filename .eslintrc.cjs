@@ -29,6 +29,7 @@ module.exports = {
     indent: ['error', 2],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
+    '@typescript-eslint/no-explicit-any': 'off',
     semi: ['error', 'never'],
   },
 }
